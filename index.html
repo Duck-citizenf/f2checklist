@@ -615,6 +615,9 @@
                 </tr>
             </tbody>
         </table>
+    </details>
+    <button onclick="showCookies()">Show cookies</button>
+    <code id="cookies"></code>
 </body>
 <script>
     let fv =  Array.from(document.querySelectorAll("#fv"));
@@ -644,7 +647,7 @@
         b.addEventListener('click',function(){
             if (a[y].checked == true){
                 let i = 0;
-                while (i < a.length && y != 0){
+                while (i < y && y != 0){
                     a[i].checked = true;
                     i++;
                 }
@@ -673,5 +676,39 @@
     sf2.forEach((m)=>{check(sf2, m);})
     sf3.forEach((m)=>{check(sf3, m);})
     v .forEach ((m)=>{check(v , m);})
+
+
+    let clo = document.querySelectorAll("input");
+    let close = Array.from(clo);
+    close.map(w => w.addEventListener('change', write));
+    function write(){
+        cookie = [];
+        for (const box of close){
+            if(box.checked == true){
+                cookie.push(1);
+            }
+            else{
+                cookie.push(0);
+            }
+        }
+        localStorage.setItem("color", cookie);
+    }
+    function showCookies() {
+        const output = document.getElementById("cookies");
+        output.innerHTML = localStorage.getItem("color");
+    }
+    if(localStorage.getItem("color").length > 0){
+        let takecookie = localStorage.getItem("color").replace(/,/g, '');
+        i = 0;
+        for (const box of close){
+            if(takecookie.charAt(i) == '1'){
+                box.checked = true;
+            }
+            else{
+                box.checked = false;
+            }
+            i++
+        }
+    }
 
 </script>
