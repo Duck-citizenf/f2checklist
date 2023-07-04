@@ -6,6 +6,7 @@
 </style>
 
 <body>
+    <button>Clear</button>
     <details>
          <summary>Arroyo</summary>
         <table>
@@ -616,8 +617,6 @@
             </tbody>
         </table>
     </details>
-    <button onclick="showCookies()">Show cookies</button>
-    <code id="cookies"></code>
 </body>
 <script>
     let fv =  Array.from(document.querySelectorAll("#fv"));
@@ -693,10 +692,6 @@
         }
         localStorage.setItem("color", cookie);
     }
-    function showCookies() {
-        const output = document.getElementById("cookies");
-        output.innerHTML = localStorage.getItem("color");
-    }
     if(localStorage.getItem("color").length > 0){
         let takecookie = localStorage.getItem("color").replace(/,/g, '');
         i = 0;
@@ -709,6 +704,14 @@
             }
             i++
         }
+    }
+
+    document.querySelector('button').addEventListener('click', clear);
+    function clear(){
+        for (const box of close){
+            box.checked = false;
+        }
+        write();
     }
 
 </script>
